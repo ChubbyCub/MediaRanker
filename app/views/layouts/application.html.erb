@@ -10,6 +10,14 @@
   </head>
 
   <body>
+    <header>
+      <h1>Media Ranker</h1>
+      <h2>Ranking the Best of Everything</h2>
+      <nav>
+        <%= link_to "View all media", works_path %>
+        <%= link_to "Add a new work", new_work_path %>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>
