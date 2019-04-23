@@ -7,7 +7,7 @@
     <% @works.each do |work| %>
       <% if work.category == "album" %>
         <li>
-          <%= work.title %>
+          <%= link_to work.title, work_path(work.id) %>
           <%= work.creator %>
           <%= work.publication_year %>
         </li>
@@ -19,7 +19,7 @@
     <% @works.each do |work| %>
       <% if work.category == "book" %>
         <li>
-          <%= work.title %>
+          <%= link_to work.title, work_path(work.id) %>
           <%= work.creator %>
           <%= work.publication_year %>
         </li>
@@ -31,7 +31,7 @@
     <% @works.each do |work| %>
       <% if work.category == "movie" %>
         <li>
-          <%= work.title %>
+          <%= link_to work.title, work_path(work.id) %>
           <%= work.creator %>
           <%= work.publication_year %>
         </li>

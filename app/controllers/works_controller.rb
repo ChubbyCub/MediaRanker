@@ -11,9 +11,19 @@ class WorksController < ApplicationController
   end
 
   def new
+    @work = Work.new
   end
 
   def create
+    @work = Work.new(work_params)
+
+    is_successful = @work.save
+
+    if is_successful
+      redirect_to work_path(@work.id)
+    else
+      render :new, status: :bad_request
+    end
   end
 
   def update
