@@ -1,5 +1,7 @@
-<%= render partial: "form", locals: {
-  form_class: "edit-work",
-  intro_text: "Edit this #{@work.category}",
-  action_name: "Update Work"
-} %>
+<% if !flash[:error] %>
+  <%= render partial: "form", locals: {
+    form_class: "edit-work",
+    intro_text: "Edit this #{@work.category}",
+    action_name: "Update Work"
+  } %>
+<% end %>

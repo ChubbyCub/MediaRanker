@@ -14,11 +14,13 @@ describe WorksController do
       must_respond_with :success
     end
 
-    it "should respond with 404 given an invalid media id" do
+    it "should respond with flash message (invalid work) given an invalid media id" do
       work_id = work.id
       work.destroy
       get work_path(work_id)
-      must_respond_with :not_found
+      expect(flash[:error]).must_equal "Invalid work"
+      must_respond_with :redirect
+      must_redirect_to root_path
     end
   end
 
@@ -48,6 +50,8 @@ describe WorksController do
         post works_path, params: test_input
       }.must_change "Work.count", 1
 
+      expect(flash[:success]).must_equal "Successfully created new work!"
+
       new_work = Work.find_by(title: input_title)
       expect(new_work).wont_be_nil
       expect(new_work.category).must_equal input_category
@@ -59,7 +63,7 @@ describe WorksController do
       must_respond_with :redirect
     end
 
-    it "will return a 400 with an invalid media" do
+    it "will display flash messages with an invalid work" do
       input_category = "book"
       input_title = ""
       input_publication_year = 1990
@@ -79,13 +83,25 @@ describe WorksController do
         post works_path, params: test_input
       }.wont_change "Work.count"
 
+      expect(flash[:title]).must_equal ["can't be blank"]
       must_respond_with :bad_request
     end
   end
 
-  it "should get edit" do
-    get edit_work_path(works(:avenger))
-    must_respond_with :success
+  describe "edit" do
+    it "should get edit" do
+      get edit_work_path(works(:avenger))
+      must_respond_with :success
+    end
+
+    it "should bring up flash error message when given invalid id" do
+      work_id = work.id
+      work.destroy
+      get edit_work_path(work_id)
+      expect(flash[:error]).must_equal "Invalid work"
+      must_respond_with :redirect
+      must_redirect_to works_path
+    end
   end
 
   describe "update" do
@@ -106,6 +122,7 @@ describe WorksController do
 
       must_respond_with :redirect
       work_to_update.reload
+      expect(flash[:success]).must_equal "Successfully updated #{work_to_update.title}"
       expect(work_to_update.title).must_equal test_input[:work][:title]
     end
 
@@ -123,6 +140,8 @@ describe WorksController do
         patch work_path(work_to_update.id), params: test_input
       }.wont_change "Work.count"
 
+      expect(flash[:title]).must_equal ["can't be blank"]
+
       must_respond_with :bad_request
       work_to_update.reload
       expect(work_to_update.title).must_equal work_to_update.title
@@ -130,16 +149,19 @@ describe WorksController do
   end
 
   describe "destroy" do
-    it "returns a 404 if the book is not found" do
+    it "returns a flash error message if the work is not found" do
       delete work_path("INVALID ID")
-      must_respond_with :not_found
+      expect(flash[:error]).must_equal "Invalid work"
+      must_respond_with :redirect
+      must_redirect_to works_path
     end
 
     it "can delete a book" do
       expect {
-        delete work_path(works(:thinking).id)
+        delete work_path(work.id)
       }.must_change "Work.count", -1
 
+      expect(flash[:success]).must_equal "Successfully deleted #{work.title}"
       must_respond_with :redirect
       must_redirect_to works_path
     end
