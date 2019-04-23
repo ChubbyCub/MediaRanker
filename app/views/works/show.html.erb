@@ -4,8 +4,8 @@
   <p><%= @work.publication_year %></p>
   <p><%= @work.description %></p>
 
-  <p><%= button_to "Back to media ranks" %></p>
-  <p><%= button_to "Edit" %></p>
-  <p><%= button_to "Upvote" %></p>
-  <p><%= button_to "Delete" %></p>
+  <p><%= link_to '<button type="button">Back to Media Ranks</button>'.html_safe, root_path %></p>
+  <p><%= link_to '<button type="button">Edit</button>'.html_safe, edit_work_path(params[:id]) %></p>
+  <p><%= link_to '<button type="button">Upvote</button>'.html_safe %></p>
+  <p><%= button_to "Delete", work_path(params[:id]), method: :delete, data: { confirm: "Are you sure?" } %></p>
 </body>

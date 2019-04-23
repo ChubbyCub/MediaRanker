@@ -26,18 +26,39 @@ class WorksController < ApplicationController
     end
   end
 
-  def update
+  def edit
+    @work = Work.find_by(id: params[:id])
+    if @work.nil?
+      head :not_found
+    end
   end
 
-  def edit
+  def update
+    @work = Work.find_by(id: params[:id])
+
+    is_successful = @work.update(work_params)
+
+    if is_successful
+      redirect_to work_path(@work.id)
+    else
+      render :edit, status: :bad_request
+    end
   end
 
   def destroy
+    work = Work.find_by(id: params[:id])
+
+    if work.nil?
+      head :not_found
+    else
+      work.destroy
+      redirect_to works_path
+    end
   end
 
   private
 
   def work_params
-    return params.require(:work).permit(:title, :category, :publication_year, :creator)
+    return params.require(:work).permit(:title, :category, :publication_year, :creator, :description)
   end
 end

@@ -1,15 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  category: MyString
-  title: MyString
-  creator: MyString
-  publication_year: 1
-  description: MyString
+thinking:
+  category: book
+  title: Thinking fast and slow
+  creator: Daniel Kahneman
+  publication_year: 2011
+  description: How human brain works
 
-two:
-  category: MyString
-  title: MyString
-  creator: MyString
-  publication_year: 1
-  description: MyString
+avenger:
+  category: movie
+  title: Avengers End Game
+  creator: Anthony Russo
+  publication_year: 2019
+  description: About a bunch of super heroes
+
+hello:
+  category: album
+  title: Hello
+  creator: Adele
+  publication_year: 2015
+  description: A bunch of sad love songs
