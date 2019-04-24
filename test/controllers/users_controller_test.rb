@@ -64,7 +64,7 @@ describe UsersController do
 
       post logout_path
       expect(session[:user_id]).must_be_nil
-      
+
       must_respond_with :redirect
       must_redirect_to root_path
     end
