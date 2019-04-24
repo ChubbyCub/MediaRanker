@@ -1,0 +1,4 @@
+<header>
+  <h3>User Summary: <%= @current_user.username %></h3>
+  <h5>Joined site on <%= (@current_user.created_at).to_date.to_formatted_s(:long) %></h5>
+</header>

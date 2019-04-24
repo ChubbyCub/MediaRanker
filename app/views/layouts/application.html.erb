@@ -34,7 +34,12 @@
         <%=link_to "View top media", root_path %>
         <%= link_to "View all media", works_path %>
         <%= link_to "Add a new work", new_work_path %>
-        <%= link_to "Log in" %>
+        <% if session[:user_id] %>
+          <%= link_to "Logged in as #{User.find(session[:user_id]).username}", current_user_path %>
+          <%= button_to "Log out", logout_path(session[:user_id]) %>
+        <% else %>
+          <%= link_to "Log in", login_path %>
+        <% end %>
       </nav>
     </header>
     <%= yield %>
