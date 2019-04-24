@@ -9,11 +9,11 @@ class UsersController < ApplicationController
 
     if user
       session[:user_id] = user.id
-      flash[:success] = "Successfully logged in as an existing user #{username}"
+      flash.now[:success] = "Successfully logged in as an existing user #{username}"
     else
       user = User.create(username: username)
       session[:user_id] = user.id
-      flash[:success] = "Successfully logged in as a new user #{user.username}"
+      flash.now[:success] = "Successfully logged in as a new user #{user.username}"
     end
 
     redirect_to root_path
@@ -30,5 +30,11 @@ class UsersController < ApplicationController
   def logout
     session[:user_id] = nil
     redirect_to root_path
+  end
+
+  private
+
+  def user_params
+    return params.require(:user).permit(:username, vote_ids: [])
   end
 end

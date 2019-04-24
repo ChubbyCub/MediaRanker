@@ -10,6 +10,7 @@
           <%= link_to work.title, work_path(work.id) %>
           <%= work.creator %>
           <%= work.publication_year %>
+          <%= button_to "Upvote", work_votes_path(work.id) %>
         </li>
       <% end %>
     <% end %>
@@ -22,6 +23,7 @@
           <%= link_to work.title, work_path(work.id) %>
           <%= work.creator %>
           <%= work.publication_year %>
+          <%= button_to "Upvote", work_votes_path(work.id) %>
         </li>
       <% end %>
     <% end %>
@@ -34,6 +36,7 @@
           <%= link_to work.title, work_path(work.id) %>
           <%= work.creator %>
           <%= work.publication_year %>
+          <%= button_to "Upvote", work_votes_path(work.id) %>
         </li>
       <% end %>
     <% end %>
