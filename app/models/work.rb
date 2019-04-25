@@ -17,4 +17,9 @@ class Work < ApplicationRecord
     end
     return result
   end
+
+  def self.top_ten(name)
+    works = Work.where(category: name).sort_by { |work| work.vote_ids.length }.reverse!
+    return works.take(10)
+  end
 end
