@@ -39,14 +39,7 @@ describe UsersController do
 
   describe "current action" do
     it "should get current user page" do
-      test_input = {
-        "user": {
-          username: sample_user.username,
-        },
-      }
-      post login_path, params: test_input
-      expect(session[:user_id]).must_equal sample_user.id
-
+      perform_login
       get current_user_path
       must_respond_with :success
     end
@@ -54,13 +47,7 @@ describe UsersController do
 
   describe "logout" do
     it "should log a user out" do
-      test_input = {
-        "user": {
-          username: sample_user.username,
-        },
-      }
-      post login_path, params: test_input
-      expect(session[:user_id]).must_equal sample_user.id
+      perform_login
 
       post logout_path
       expect(session[:user_id]).must_be_nil

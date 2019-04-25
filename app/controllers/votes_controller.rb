@@ -25,9 +25,4 @@ class VotesController < ApplicationController
       flash[:error] = "You must log in to vote"
     end
   end
-
-  private
-
-  def voted
-  end
 end
