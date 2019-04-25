@@ -3,6 +3,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
 require "minitest/reporters"  # for Colorized output
+
 #  For colorful output!
 Minitest::Reporters.use!(
   Minitest::Reporters::SpecReporter.new,
@@ -30,8 +31,11 @@ class ActiveSupport::TestCase
         username: user.username,
       },
     }
+    puts "Login Pathhhhhhh"
+    puts login_path
     post login_path, params: login_data
 
+    # Verify the user ID was saved - if that didn't work, this test is invalid
     expect(session[:user_id]).must_equal user.id
 
     return user

@@ -20,3 +20,66 @@ hello:
   creator: Adele
   publication_year: 2015
   description: A bunch of sad love songs
+
+dragon:
+  category: movie
+  title: How to train your dragons
+  creator: Some director
+  publication_year: 2019
+  description: Dragons and humans coexist
+
+home:
+  category: album
+  title: Come back home
+  creator: 2NE1
+  publication_year: 2010
+  description: Some K-pop song
+
+young:
+  category: album
+  title: Forever Young
+  creator: Some composer
+  publication_year: 2011
+  description: a USUK song
+
+river:
+  category: album
+  title: Cry me a river
+  creator: Justin Timberlake
+  publication_year: 2005
+  description: some fun song
+
+gene:
+  category: book
+  title: The selfish gene
+  creator: Some writer
+  publication_year: 2000
+  description: a book about biology
+
+interview:
+  category: book
+  title: Cracking coding interview
+  creator: Some author
+  publication_year: 2005
+  description: a book that is not very useful for interview
+  
+titan:
+  category: book
+  title: Titans
+  creator: Tim Ferris
+  publication_year: 2016
+  description: encourage people to be lazy
+
+statistics:
+  category: book
+  title: Naked statistics
+  creator: Some statistician
+  publication_year: 2000
+  description: easy to understand statistics
+
+romeo:
+  category: book
+  title: Romeo and Juliet
+  creator: Shakespeare
+  publication_year: 1700
+  description: a romantic story between Romeo and Juliet
