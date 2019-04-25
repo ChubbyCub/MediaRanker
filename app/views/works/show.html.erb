@@ -6,6 +6,6 @@
 
   <p><%= link_to "Back to Media Ranks", root_path %></p>
   <p><%= link_to "Edit", edit_work_path(params[:id]) %></p>
-  <p><%= button_to "Upvote", work_votes_path(@work.id) %></p>
-  <p><%= button_to "Delete", work_path(params[:id]), method: :delete, data: { confirm: "Are you sure?" } %></p>
+  <p><%= link_to "Upvote", work_votes_path(@work.id), method: :post %></p>
+  <p><%= link_to "Delete", work_path(params[:id]), method: :delete, data: { confirm: "Are you sure?" } %></p>
 </body>

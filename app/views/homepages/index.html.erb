@@ -1,6 +1,7 @@
 <body>
   <section id="spotlight">
-    <h3>Media Spotlight</h3>
+    <h3>Media Spotlight: <%= Work.most_voted.title %> by <%= Work.most_voted.creator %></h3>
+    <p><%= Work.most_voted.vote_ids.length %> votes - <%= Work.most_voted.description %></p>
   </section>
 
   <section id="media-list">

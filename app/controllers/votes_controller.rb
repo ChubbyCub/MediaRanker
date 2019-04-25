@@ -24,5 +24,6 @@ class VotesController < ApplicationController
     else
       flash[:error] = "You must log in to vote"
     end
+    redirect_back(fallback_location: root_path)
   end
 end
