@@ -16,7 +16,7 @@
         <% vote = Vote.find_by(id: id) %>
         <% user = User.find_by(id: vote.user_id) %>
         <li>
-          <%= user.username %>
+          <%= link_to user.username, current_user_path %>
           <%= (vote.created_at).to_date.to_formatted_s(:long) %>
         </li>
       <% end %>

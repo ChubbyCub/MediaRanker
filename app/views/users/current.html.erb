@@ -2,3 +2,21 @@
   <h3>User Summary: <%= @current_user.username %></h3>
   <h5>Joined site on <%= (@current_user.created_at).to_date.to_formatted_s(:long) %></h5>
 </header>
+<body>
+  <h3>Votes</h3>
+  <section>
+    <ul>
+      <% @current_user.vote_ids.each do |id| %>
+        <% vote = Vote.find_by(id: id) %>
+        <% work = Work.find_by(id: vote.work_id) %>
+        <li>
+          <%= link_to work.title, work_path(work.id) %>
+          <%= work.creator %>
+          <%= work.publication_year %>
+          <%= work.category %>
+          <%= (vote.created_at).to_date.to_formatted_s(:long) %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</body>
