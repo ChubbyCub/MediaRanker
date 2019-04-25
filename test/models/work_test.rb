@@ -29,6 +29,22 @@ describe Work do
     end
   end
 
+  describe "relationship" do
+    it "can have no vote" do
+      expect(work.votes.length).must_equal 0
+    end
+
+    it "can have one or more votes" do
+      new_vote = Vote.new(user_id: users(:two).id, work_id: work.id)
+      new_vote.save
+
+      another_vote = Vote.new(user_id: user.id, work_id: work.id)
+      another_vote.save
+
+      expect(work.votes.length).must_equal 2
+    end
+  end
+
   describe "most voted" do
     it "should return a work that was voted most" do
       vote = Vote.new(work_id: work.id, user_id: user.id)
