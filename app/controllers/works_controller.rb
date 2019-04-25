@@ -1,6 +1,6 @@
 class WorksController < ApplicationController
   def index
-    @works = Work.all
+    @works = Work.all.sort_by { |work| work.vote_ids.length }.reverse!
   end
 
   def show

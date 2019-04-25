@@ -8,4 +8,19 @@
   <p><%= link_to "Edit", edit_work_path(params[:id]) %></p>
   <p><%= link_to "Upvote", work_votes_path(@work.id), method: :post %></p>
   <p><%= link_to "Delete", work_path(params[:id]), method: :delete, data: { confirm: "Are you sure?" } %></p>
+
+  <section>
+    <h3><%= @work.vote_ids.length %> votes for this <%= @work.category %></h3>
+    <ul>
+      <% @work.vote_ids.each do |id| %>
+        <% vote = Vote.find_by(id: id) %>
+        <% user = User.find_by(id: vote.user_id) %>
+        <li>
+          <%= user.username %>
+          <%= (vote.created_at).to_date.to_formatted_s(:long) %>
+        </li>
+      <% end %>
+    </ul>
+
+  </section>
 </body>
