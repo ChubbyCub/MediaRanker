@@ -1,10 +1,11 @@
 class WorksController < ApplicationController
+  before_action :find_work, only: [:show, :edit, :update, :destroy]
+
   def index
     @works = Work.all.sort_by { |work| work.vote_ids.length }.reverse!
   end
 
   def show
-    @work = Work.find_by(id: params[:id])
     if @work.nil?
       flash[:error] = "Invalid work"
       redirect_to root_path
@@ -32,7 +33,6 @@ class WorksController < ApplicationController
   end
 
   def edit
-    @work = Work.find_by(id: params[:id])
     if @work.nil?
       flash[:error] = "Invalid work"
       redirect_to works_path
@@ -40,8 +40,6 @@ class WorksController < ApplicationController
   end
 
   def update
-    @work = Work.find_by(id: params[:id])
-
     is_successful = @work.update(work_params)
 
     if is_successful
@@ -56,14 +54,12 @@ class WorksController < ApplicationController
   end
 
   def destroy
-    work = Work.find_by(id: params[:id])
-
-    if work.nil?
+    if @work.nil?
       flash[:error] = "Invalid work"
       redirect_to works_path
     else
-      work.destroy
-      flash[:success] = "Successfully deleted #{work.title}"
+      @work.destroy
+      flash[:success] = "Successfully deleted #{@work.title}"
       redirect_to works_path
     end
   end
@@ -72,5 +68,9 @@ class WorksController < ApplicationController
 
   def work_params
     return params.require(:work).permit(:title, :category, :publication_year, :creator, :description, vote_ids: [])
+  end
+
+  def find_work
+    @work = Work.find_by(id: params[:id])
   end
 end
