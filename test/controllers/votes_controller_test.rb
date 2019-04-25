@@ -2,7 +2,7 @@ require "test_helper"
 
 describe VotesController do
   before do
-    @work = works(:avenger)
+    @work = works(:movie_5)
     @user = perform_login
   end
 

@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Work do
-  let(:work) { works(:avenger) }
+  let(:work) { works(:movie_10) }
   let(:user) { users(:one) }
 
   it "must be valid" do
@@ -38,34 +38,87 @@ describe Work do
     end
   end
 
-  describe "top ten" do
+  describe "top ten books" do
     let(:books) { Work.where(category: "book") }
-    let(:albums) { Work.where(category: "album") }
-    let(:movies) { Work.where(category: "movie") }
 
     it "should return a list of works that belong to book category" do
-      expect(Work.top_ten("book").length).must_equal books.length
-
-      works(:statistics).destroy
-      works(:thinking).destroy
-
-      expect(Work.top_ten("book").length).must_equal books.length - 2
+      expect(Work.top_ten("book")).must_be_kind_of Array
     end
 
-    it "should return a list of works that belong to album category" do
-      expect(Work.top_ten("album").length).must_equal albums.length
-
-      works(:home).destroy
-
-      expect(Work.top_ten("album").length).must_equal albums.length - 1
+    it "should return a list of 10 books" do
+      expect(Work.top_ten("book").length).must_equal 10
     end
+
+    it "should return a truncated list of books after some being deleted" do
+      num_books = books.length
+
+      works(:book_5).destroy
+      works(:book_6).destroy
+
+      expect(Work.top_ten("book").length).must_equal num_books - 2
+    end
+
+    it "should return an empty list if no books exist" do
+      books.each do |book|
+        book.destroy
+      end
+      expect(Work.top_ten("book")).must_be_empty
+    end
+  end
+
+  describe "top ten movies" do
+    let(:movies) { Work.where(category: "movie") }
 
     it "should return a list of works that belong to movie category" do
-      expect(Work.top_ten("movie").length).must_equal movies.length
+      expect(Work.top_ten("movie")).must_be_kind_of Array
+    end
 
-      works(:dragon).destroy
+    it "should return a list of 10 movies" do
+      expect(Work.top_ten("movie").length).must_equal 10
+    end
 
-      expect(Work.top_ten("movie").length).must_equal movies.length - 1
+    it "should return a truncated list of books after some being deleted" do
+      num_movies = movies.length
+
+      works(:movie_5).destroy
+      works(:movie_6).destroy
+
+      expect(Work.top_ten("movie").length).must_equal num_movies - 2
+    end
+
+    it "should return an empty list if no books exist" do
+      movies.each do |movie|
+        movie.destroy
+      end
+      expect(Work.top_ten("movie")).must_be_empty
+    end
+  end
+
+  describe "top ten albums" do
+    let(:albums) { Work.where(category: "album") }
+
+    it "should return a list of works that belong to album category" do
+      expect(Work.top_ten("album")).must_be_kind_of Array
+    end
+
+    it "should return a list of 10 movies" do
+      expect(Work.top_ten("album").length).must_equal 10
+    end
+
+    it "should return a truncated list of books after some being deleted" do
+      num_albums = albums.length
+
+      works(:album_5).destroy
+      works(:album_6).destroy
+
+      expect(Work.top_ten("album").length).must_equal num_albums - 2
+    end
+
+    it "should return an empty list if no books exist" do
+      albums.each do |album|
+        album.destroy
+      end
+      expect(Work.top_ten("album")).must_be_empty
     end
   end
 end

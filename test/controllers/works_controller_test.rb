@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe WorksController do
-  let(:work) { works(:thinking) }
+  let(:work) { works(:book_1) }
 
   it "should get index" do
     get works_path
@@ -90,7 +90,7 @@ describe WorksController do
 
   describe "edit" do
     it "should get edit" do
-      get edit_work_path(works(:avenger))
+      get edit_work_path(works(:album_1))
       must_respond_with :success
     end
 
@@ -106,9 +106,9 @@ describe WorksController do
 
   describe "update" do
     it "will update an existing media" do
-      work_to_update = works(:avenger)
+      work_to_update = works(:movie_2)
 
-      input_title = "Avengers: End Game"
+      input_title = "Meow"
 
       test_input = {
         "work": {
@@ -127,7 +127,7 @@ describe WorksController do
     end
 
     it "will return a bad_request (400) when asked to update with invalid data" do
-      work_to_update = works(:hello)
+      work_to_update = works(:album_5)
 
       input_title = ""
       test_input = {
