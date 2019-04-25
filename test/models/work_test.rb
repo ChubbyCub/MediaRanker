@@ -93,7 +93,7 @@ describe Work do
       expect(Work.top_ten("movie").length).must_equal 10
     end
 
-    it "should return a truncated list of books after some being deleted" do
+    it "should return a truncated list of movies after some being deleted" do
       num_movies = movies.length
 
       works(:movie_5).destroy
@@ -102,7 +102,7 @@ describe Work do
       expect(Work.top_ten("movie").length).must_equal num_movies - 2
     end
 
-    it "should return an empty list if no books exist" do
+    it "should return an empty list if no movies exist" do
       movies.each do |movie|
         movie.destroy
       end
@@ -135,6 +135,20 @@ describe Work do
         album.destroy
       end
       expect(Work.top_ten("album")).must_be_empty
+    end
+  end
+
+  describe "top ten" do
+    it "should return a list in a different order when number of votes change" do
+      # book 5 was ranked first
+      perform_vote(work_id: works(:book_5).id, user_id: users(:one).id)
+      expect(Work.top_ten("book").first.id).must_equal works(:book_5).id
+
+      # book 6 is now ranked first
+      perform_vote(work_id: works(:book_6).id, user_id: users(:one).id)
+      perform_vote(work_id: works(:book_6).id, user_id: users(:two).id)
+
+      expect(Work.top_ten("book").first.id).must_equal works(:book_6).id
     end
   end
 end

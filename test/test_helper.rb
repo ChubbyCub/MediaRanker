@@ -40,4 +40,8 @@ class ActiveSupport::TestCase
 
     return user
   end
+
+  def perform_vote(work_id: nil, user_id: nil)
+    Vote.create(work_id: work_id, user_id: user_id)
+  end
 end
