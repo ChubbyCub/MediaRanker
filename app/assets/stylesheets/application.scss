@@ -60,9 +60,10 @@ main {
 }
 
 .app-header {
-  padding: 2rem 1rem 0.5rem 1rem;
-  background-color: #B2DFDB;
   max-width: 100%;
+  background-color: #B2DFDB;
+  margin-bottom: 0.5rem;
+  padding: 2rem 1rem 0.5rem 1rem;
 }
 
 .app-header h1 {
@@ -98,14 +99,6 @@ nav {
   background-color: #26A69A;
   border: none;
 }
-
-// .nav-link {
-//   color: #00796B;
-// }
-
-// .nav-link:hover {
-//   color: #00796B;
-// }
 
 .user-login .btn {
   margin-left: 2rem;
