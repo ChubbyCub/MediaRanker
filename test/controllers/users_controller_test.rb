@@ -37,10 +37,9 @@ describe UsersController do
     end
   end
 
-  describe "current action" do
+  describe "show action" do
     it "should get current user page" do
-      perform_login
-      get current_user_path
+      get user_path(sample_user.id)
       must_respond_with :success
     end
   end

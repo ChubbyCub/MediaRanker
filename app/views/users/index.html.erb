@@ -10,10 +10,12 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.username %></td>
+        <td><%=link_to user.username, user_path(user.id) %></td>
         <td><%= user.vote_ids.length %></td>
         <td><%= (user.created_at).to_date.to_formatted_s(:long) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to "View top media", root_path, class: "btn btn-secondary" %>

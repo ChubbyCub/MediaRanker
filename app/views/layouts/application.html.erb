@@ -26,7 +26,7 @@
 
         <ul class="nav user-login">
           <% if session[:user_id] %>
-            <li class="nav-item"><%= button_to "Logged in as #{User.find(session[:user_id]).username}", current_user_path, method: :get, class: "btn btn-primary" %></li>
+            <li class="nav-item"><%= button_to "Logged in as #{User.find(session[:user_id]).username}", user_path(session[:user_id]), method: :get, class: "btn btn-primary" %></li>
             <li class="nav-item"><%= button_to "Log out", logout_path(session[:user_id]), method: :post, class: "btn btn-primary" %></li>
           <% else %>
             <li class="nav-item"><%= button_to "Log in", login_path, method: :get, class: "btn btn-primary" %></li>
