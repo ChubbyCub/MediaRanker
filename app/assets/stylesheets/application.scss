@@ -46,6 +46,10 @@ h2 {
   font-size: 2rem;
 }
 
+h4 {
+  font-size: 1.5rem;
+}
+
 a, h2, h3 {
   color: #26A69A;
   text-decoration: none;
@@ -57,6 +61,11 @@ a:hover {
 
 main {
   padding: 2rem;
+}
+
+.btn:hover {
+  background-color: #00796B;
+  color: white;
 }
 
 .app-header {
@@ -102,10 +111,6 @@ nav {
 
 .user-login .btn {
   margin-left: 2rem;
-}
-
-.user-login .btn:hover {
-  background-color: #00796B;
 }
 
 /* Style alert message */
