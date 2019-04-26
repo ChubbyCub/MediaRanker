@@ -1,8 +1,10 @@
 
 <section id="spotlight">
   <h2><span class="spotlight-prefix">Media Spotlight:</span>
-  <%= link_to Work.most_voted.title, work_path(Work.most_voted.id), class: "spotlight-link" %><span class="spotlight-author"> by <%= Work.most_voted.creator %></span></h2>
-  <p><%= Work.most_voted.vote_ids.length %> votes - <%= Work.most_voted.description %></p>
+  <% if Work.most_voted %>
+    <%= link_to Work.most_voted.title, work_path(Work.most_voted.id), class: "spotlight-link" %><span class="spotlight-author"> by <%= Work.most_voted.creator %></span></h2>
+    <p><%= Work.most_voted.vote_ids.length %> votes - <%= Work.most_voted.description %></p>
+  <% end %>
 </section>
 
 <hr class="root-hr">
