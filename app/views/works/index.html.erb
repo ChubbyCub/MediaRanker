@@ -1,48 +1,60 @@
-<h1>List of Works</h1>
+<h2>List of Works</h2>
 
-<h3>Albums</h3>
-<ul>
-  <% @works.each do |work| %>
-    <% if work.category == "album" %>
-      <li>
-        <%= work.vote_ids.length %>
-        <%= link_to work.title, work_path(work.id) %>
-        <%= work.creator %>
-        <%= work.publication_year %>
-        <%= button_to "Upvote", work_votes_path(work.id) %>
-      </li>
+<section class="media-table">
+  <h4>Albums</h4>
+  <table>
+    <thead>
+      <tr>
+        <th width="80">Votes</th>
+        <th>Title</th>
+        <th>Created by</th>
+        <th width="100">Published</th>
+        <th width="100">Upvote</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @works.each do |work| %>
+        <% if work.category == "album" %>
+          <tr>
+            <td><%= work.vote_ids.length %></td>
+            <td><%= link_to work.title, work_path(work.id) %></td>
+            <td><%= work.creator %></td>
+            <td><%= work.publication_year %></td>
+            <td><%= button_to "Upvote", work_votes_path(work.id) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h4>Books</h4>
+  <ul>
+    <% @works.each do |work| %>
+      <% if work.category == "book" %>
+        <li>
+          <%= work.vote_ids.length %>
+          <%= link_to work.title, work_path(work.id) %>
+          <%= work.creator %>
+          <%= work.publication_year %>
+          <%= button_to "Upvote", work_votes_path(work.id) %>
+        </li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
 
-<h3>Books</h3>
-<ul>
-  <% @works.each do |work| %>
-    <% if work.category == "book" %>
-      <li>
-        <%= work.vote_ids.length %>
-        <%= link_to work.title, work_path(work.id) %>
-        <%= work.creator %>
-        <%= work.publication_year %>
-        <%= button_to "Upvote", work_votes_path(work.id) %>
-      </li>
+  <h4>Movies</h4>
+  <ul>
+    <% @works.each do |work| %>
+      <% if work.category == "movie" %>
+        <li>
+          <%= work.vote_ids.length %>
+          <%= link_to work.title, work_path(work.id) %>
+          <%= work.creator %>
+          <%= work.publication_year %>
+          <%= button_to "Upvote", work_votes_path(work.id) %>
+        </li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
-
-<h3>Movies</h3>
-<ul>
-  <% @works.each do |work| %>
-    <% if work.category == "movie" %>
-      <li>
-        <%= work.vote_ids.length %>
-        <%= link_to work.title, work_path(work.id) %>
-        <%= work.creator %>
-        <%= work.publication_year %>
-        <%= button_to "Upvote", work_votes_path(work.id) %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
-
+  </ul>
+</section>
 
