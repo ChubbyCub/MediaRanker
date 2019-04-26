@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MediaRanker</title>
+    <title>Media Ranker 2.0</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,38 +10,47 @@
   </head>
 
   <body>
-    <header>
-      <h1>Media Ranker</h1>
-      <h2>Ranking the Best of Everything</h2>
-        <% if flash.count > 0 %>
-          <section class="flash">
-            <div class="alert">
-            <% flash.each do |name, message| %>
-              <% if message.class == Array %>
-                <ul>
-                <% message.each do |msg| %>
-                  <li><%= name %>: <%= msg %> </li>
-                <% end %>
-              <% else %>
-                <%= message %>
-              <% end %>
-              </ul>
-            <% end %>
-            </div>
-          </section>
-        <% end %>
+    <header class="app-header">
+      <h1>
+        <%= link_to "Media Ranker", root_path %>
+        <small>Ranking the Best of Everything</small>
+      </h1>
+
       <nav>
-        <%=link_to "View top media", root_path %>
-        <%= link_to "View all media", works_path %>
-        <%= link_to "Add a new work", new_work_path %>
-        <% if session[:user_id] %>
-          <%= link_to "Logged in as #{User.find(session[:user_id]).username}", current_user_path %>
-          <%= link_to "Log out", logout_path(session[:user_id]), method: :post %>
-        <% else %>
-          <%= link_to "Log in", login_path %>
-        <% end %>
+        <ul class="nav all-site">
+          <li class="nav-item"><%= link_to "View top media", root_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "View all media", works_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Add a new work", new_work_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "View all users", users_path, class: "nav-link" %></li>
+        </ul>
+
+        <ul class="nav user-login">
+          <% if session[:user_id] %>
+            <li class="nav-item"><%= button_to "Logged in as #{User.find(session[:user_id]).username}", current_user_path, method: :get, class: "btn btn-primary" %></li>
+            <li class="nav-item"><%= button_to "Log out", logout_path(session[:user_id]), method: :post, class: "btn btn-primary" %></li>
+          <% else %>
+            <li class="nav-item"><%= button_to "Log in", login_path, method: :get, class: "btn btn-primary" %></li>
+          <% end %>
+        </ul>
       </nav>
     </header>
+    <% if flash.count > 0 %>
+        <section class="alert-container">
+          <div class="alert">
+          <% flash.each do |name, message| %>
+            <% if message.class == Array %>
+              <ul>
+              <% message.each do |msg| %>
+                <li><%= name %>: <%= msg %> </li>
+              <% end %>
+            <% else %>
+              <%= message %>
+            <% end %>
+            </ul>
+          <% end %>
+          </div>
+        </section>
+      <% end %>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,8 @@
+<h3>List of Users</h3>
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.username %></li>
+    <li><%= user.vote_ids.length %></li>
+    <li><%= (user.created_at).to_date.to_formatted_s(:long) %></li>
+  <% end %>
+</ul>

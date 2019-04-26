@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def index
+    @users = User.all
+  end
+
   def current
     @current_user = User.find_by(id: session[:user_id])
     unless @current_user

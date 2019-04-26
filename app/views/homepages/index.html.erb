@@ -1,10 +1,11 @@
-<body>
-  <section id="spotlight">
-    <h3>Media Spotlight: <%= link_to Work.most_voted.title, work_path(Work.most_voted.id) %> by <%= Work.most_voted.creator %></h3>
-    <p><%= Work.most_voted.vote_ids.length %> votes - <%= Work.most_voted.description %></p>
-  </section>
 
-  <section>
+<section id="spotlight">
+  <h3>Media Spotlight: <%= link_to Work.most_voted.title, work_path(Work.most_voted.id) %> by <%= Work.most_voted.creator %></h3>
+  <p><%= Work.most_voted.vote_ids.length %> votes - <%= Work.most_voted.description %></p>
+</section>
+
+<section class="top-ten">
+  <section class="top-movies">
     <h3>Top Movies</h3>
     <% Work.top_ten("movie").each do |w| %>
       <ul>
@@ -16,7 +17,7 @@
     <% end %>
   </section>
 
-  <section>
+  <section class="top-books">
     <h3>Top Books</h3>
     <% Work.top_ten("book").each do |w| %>
       <ul>
@@ -28,7 +29,7 @@
     <% end %>
   </section>
 
-  <section>
+  <section class="top-albums">
     <h3>Top Albums</h3>
     <% Work.top_ten("album").each do |w| %>
       <ul>
@@ -39,4 +40,4 @@
       </ul>
     <% end %>
   </section>
-</body>
+</section>
