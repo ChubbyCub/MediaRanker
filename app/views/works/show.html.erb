@@ -1,26 +1,36 @@
 
-<h1><%= @work.title %></h1>
-<p><%= @work.creator %></p>
-<p><%= @work.publication_year %></p>
-<p><%= @work.description %></p>
-
-<p><%= link_to "Back to Media Ranks", root_path %></p>
-<p><%= link_to "Edit", edit_work_path(params[:id]) %></p>
-<p><%= link_to "Upvote", work_votes_path(@work.id), method: :post %></p>
-<p><%= link_to "Delete", work_path(params[:id]), method: :delete, data: { confirm: "Are you sure?" } %></p>
-
 <section>
-  <h3><%= @work.vote_ids.length %> votes for this <%= @work.category %></h3>
-  <ul>
-    <% @work.vote_ids.each do |id| %>
-      <% vote = Vote.find_by(id: id) %>
-      <% user = User.find_by(id: vote.user_id) %>
-      <li>
-        <%= link_to user.username, user_path(user.id) %>
-        <%= (vote.created_at).to_date.to_formatted_s(:long) %>
-      </li>
-    <% end %>
-  </ul>
+  <h2><%= @work.title %></h2>
+  <p>Created by: <%= @work.creator %></p>
+  <p>Published: <%= @work.publication_year %></p>
+  <p><%= @work.description %></p>
+  <section>
+    <%= link_to "Back to Media Ranks", root_path, class: "btn btn-primary" %>
+    <%= link_to "Edit", edit_work_path(params[:id]), class: "btn btn-primary" %>
+    <%= link_to "Upvote", work_votes_path(@work.id), method: :post, class: "btn btn-primary" %>
+    <%= link_to "Delete", work_path(params[:id]), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </section>
+</section>
 
+<section class="works-votes__container">
+  <h3 class="works-votes__header"><%= @work.vote_ids.length %> votes for this <%= @work.category %></h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @work.vote_ids.each do |id| %>
+        <% vote = Vote.find_by(id: id) %>
+        <% user = User.find_by(id: vote.user_id) %>
+        <tr>
+          <td><%= link_to user.username, user_path(user.id) %></td>
+          <td><%= (vote.created_at).to_date.to_formatted_s(:long) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </section>
 
