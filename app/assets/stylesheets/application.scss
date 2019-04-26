@@ -28,8 +28,35 @@ li {
   list-style-type: none
 }
 
-body {
+body, h1, h2, h3, h4, h5 {
   font-family: "Gudea", sans-serif
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  line-height: 1.2
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+a, h2, h3 {
+  color: #26A69A;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00796B;
+}
+
+main {
+  padding: 2rem;
 }
 
 .app-header {
@@ -72,21 +99,24 @@ nav {
   border: none;
 }
 
-.nav-link {
-  color: #00796B
-}
+// .nav-link {
+//   color: #00796B;
+// }
 
-.nav-link:hover {
-  color: #00796B
-}
+// .nav-link:hover {
+//   color: #00796B;
+// }
 
 .user-login .btn {
   margin-left: 2rem;
 }
 
 .user-login .btn:hover {
-  background-color: #00796B
+  background-color: #00796B;
 }
 
 /* Style alert message */
 
+.alert-container {
+  margin: 2rem 0 1rem 0;
+}

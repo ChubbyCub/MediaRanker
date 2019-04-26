@@ -1,3 +1,64 @@
 // Place all the styles related to the homepages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.spotlight {
+  padding: 0 2rem 2rem 2rem
+}
+
+.spotlight-prefix {
+  font-weight: bold;
+}
+
+.spotlight-link {
+  text-decoration: none;
+  border-bottom: 2px solid;
+  color: #26A69A;
+  font-weight: bold;
+}
+
+.spotlight-link:hover {
+  text-decoration: none;
+  color: #00796B;
+}
+
+.spotlight-author {
+  color: #26A69A;
+  font-weight: bold;
+}
+
+.root-hr {
+  margin: 0px auto 3rem auto;
+  color: #EEEEEE
+}
+
+.top-ten-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 2em;
+}
+
+.top-ten__header {
+  color: #26A69A;
+  border-bottom: 2px solid;
+  border-bottom-color: #B2DFDB;
+}
+
+.top-ten__list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.list-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.list-group-item {
+  border: none;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: -1px;
+  position: relative;
+}

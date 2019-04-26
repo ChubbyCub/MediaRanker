@@ -1,40 +1,52 @@
 
 <section id="spotlight">
-  <h3>Media Spotlight: <%= link_to Work.most_voted.title, work_path(Work.most_voted.id) %> by <%= Work.most_voted.creator %></h3>
+  <h2><span class="spotlight-prefix">Media Spotlight:</span>
+  <%= link_to Work.most_voted.title, work_path(Work.most_voted.id), class: "spotlight-link" %><span class="spotlight-author"> by <%= Work.most_voted.creator %></span></h2>
   <p><%= Work.most_voted.vote_ids.length %> votes - <%= Work.most_voted.description %></p>
 </section>
 
-<section class="top-ten">
-  <section class="top-movies">
-    <h3>Top Movies</h3>
+<hr class="root-hr">
+
+<section class="top-ten-container">
+  <section class="top-ten__list-container">
+    <h2 class="top-ten__header">Top Movies</h2>
     <% Work.top_ten("movie").each do |w| %>
-      <ul>
-        <li>
-          <%= link_to w.title, work_path(w.id) %> by <%= w.creator %>
+      <ul class="list-group top-ten__list">
+        <li class="list-group-item">
+          <h4>
+            <a><%= link_to w.title, work_path(w.id) %></a>
+            <small class="top-ten__creator">by <%= w.creator %></small>
+          </h4>
           <p><%= w.vote_ids.length %> votes</p>
         </li>
       </ul>
     <% end %>
   </section>
 
-  <section class="top-books">
-    <h3>Top Books</h3>
+  <section class="top-ten__list-container">
+    <h2 class="top-ten__header">Top Books</h2>
     <% Work.top_ten("book").each do |w| %>
-      <ul>
-        <li>
-          <%= link_to w.title, work_path(w.id) %> by <%= w.creator %>
+      <ul class="list-group top-ten__list">
+        <li class="list-group-item">
+          <h4>
+            <a><%= link_to w.title, work_path(w.id) %></a>
+            <small class="top-ten__creator">by <%= w.creator %></small>
+          </h4>
           <p><%= w.vote_ids.length %> votes</p>
         </li>
       </ul>
     <% end %>
   </section>
 
-  <section class="top-albums">
-    <h3>Top Albums</h3>
+  <section class="top-ten__list-container">
+    <h2 class="top-ten__header">Top Albums</h2>
     <% Work.top_ten("album").each do |w| %>
-      <ul>
-        <li>
-          <%= link_to w.title, work_path(w.id) %> by <%= w.creator %>
+      <ul class="list-group top-ten__list">
+        <li class="list-group-item">
+          <h4>
+            <a><%= link_to w.title, work_path(w.id) %></a>
+            <small class="top-ten__creator">by <%= w.creator %></small>
+          </h4>
           <p><%= w.vote_ids.length %> votes</p>
         </li>
       </ul>

@@ -36,7 +36,6 @@
     </header>
     <% if flash.count > 0 %>
         <section class="alert-container">
-          <div class="alert">
           <% flash.each do |name, message| %>
             <% if message.class == Array %>
               <ul>
@@ -44,13 +43,15 @@
                 <li><%= name %>: <%= msg %> </li>
               <% end %>
             <% else %>
-              <%= message %>
+              <div class="alert alert-success">
+                <span><%= message %></span>
+              </div>
             <% end %>
             </ul>
           <% end %>
-          </div>
         </section>
       <% end %>
-    <%= yield %>
+
+    <main><%= yield %></main>
   </body>
 </html>
