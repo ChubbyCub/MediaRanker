@@ -156,7 +156,7 @@ describe WorksController do
       must_redirect_to works_path
     end
 
-    it "can delete a book" do
+    it "can delete a work" do
       expect {
         delete work_path(work.id)
       }.must_change "Work.count", -1
