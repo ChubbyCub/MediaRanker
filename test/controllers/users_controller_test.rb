@@ -37,10 +37,26 @@ describe UsersController do
     end
   end
 
+  describe "index action" do
+    it "should get index" do
+      get users_path
+      must_respond_with :success
+    end
+  end
+
   describe "show action" do
     it "should get current user page" do
       get user_path(sample_user.id)
       must_respond_with :success
+    end
+
+    it "should respond with flash message (invalid user) given an invalid user id" do
+      user_id = sample_user.id
+      sample_user.destroy
+      get user_path(user_id)
+      expect(flash[:error]).must_equal "Invalid user"
+      must_respond_with :redirect
+      must_redirect_to root_path
     end
   end
 

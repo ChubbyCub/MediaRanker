@@ -25,7 +25,7 @@ describe VotesController do
       post work_votes_path(@work.id)
     }.wont_change "Vote.count"
 
-    expect(flash.now[:user]).must_equal "has already voted for this work"
+    expect(flash[:error]).must_equal "has already voted for this work"
   end
 
   it "should not allow up vote when the user is not logged in" do
