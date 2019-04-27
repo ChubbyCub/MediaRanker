@@ -58,10 +58,11 @@ class WorksController < ApplicationController
       flash[:error] = "Invalid work"
       redirect_to works_path
     else
-      if !@work.vote_ids.empty?
-        vote = Vote.find_by(work_id: @work.id)
-        user = User.find_by(id: vote.user_id)
-        vote.destroy
+      vote_ids = @work.vote_ids
+      if !vote_ids.empty?
+        vote_ids.each do |id|
+          Vote.find(id).destroy
+        end
       end
       @work.destroy
       flash[:success] = "Successfully deleted #{@work.title}"
