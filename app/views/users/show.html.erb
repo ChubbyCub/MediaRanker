@@ -18,13 +18,15 @@
       <% @user.vote_ids.each do |id| %>
         <% vote = Vote.find_by(id: id) %>
         <% work = Work.find_by(id: vote.work_id) %>
-        <tr>
-          <td><%= link_to work.title, work_path(work.id) %></td>
-          <td><%= work.creator %></td>
-          <td><%= work.publication_year %></td>
-          <td><%= work.category %></td>
-          <td><%= (vote.created_at).to_date.to_formatted_s(:long) %></td>
-        </tr>
+        <% if work %>
+          <tr>
+            <td><%= link_to work.title, work_path(work.id) %></td>
+            <td><%= work.creator %></td>
+            <td><%= work.publication_year %></td>
+            <td><%= work.category %></td>
+            <td><%= (vote.created_at).to_date.to_formatted_s(:long) %></td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
