@@ -6,7 +6,8 @@ class VotesController < ApplicationController
       votes_work.each do |i|
         votes_user.each do |j|
           if i == j
-            flash.now[:user] = "has already voted for this work"
+            flash[:error] = "has already voted for this work"
+            redirect_back(fallback_location: root_path)
             return
           end
         end
