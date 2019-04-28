@@ -10,7 +10,7 @@ class Work < ApplicationRecord
     result = nil
     Work.all.each do |work|
       num_votes = work.vote_ids.length
-      if num_votes >= max_votes
+      if num_votes > max_votes
         max_votes = num_votes
         result = work
       end

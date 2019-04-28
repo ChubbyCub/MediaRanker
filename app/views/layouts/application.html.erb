@@ -35,6 +35,7 @@
         </ul>
       </nav>
     </header>
+
     <% if flash.count > 0 %>
       <section class="alert-container">
         <% flash.each do |name, message| %>
@@ -46,11 +47,12 @@
               </li>
             <% end %>
           <% else %>
-            <% if flash[:success] %>
-              <div class="alert alert-success" role="alert"><%= message %></div>
-            <% else %>
+            <% if flash[:error] %>
               <div class="alert alert-warning" role="alert"><%= message %></div>
+            <% else %>
+              <div class="alert alert-success" role="alert"><%= message %></div>
             <% end %>
+            
           <% end %>
           </ul>
         <% end %>

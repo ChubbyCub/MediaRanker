@@ -10,7 +10,7 @@ describe User do
 
   describe "validations" do
     it "requires a username" do
-      user.username = nil
+      user.username = ""
 
       valid_user = user.valid?
 

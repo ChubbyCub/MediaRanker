@@ -7,15 +7,21 @@ class UsersController < ApplicationController
     username = params[:user][:username]
     user = User.find_by(username: username)
 
-    if user
-      session[:user_id] = user.id
-      flash[:success] = "Successfully logged in as an existing user #{username}"
-    else
+    if user.nil?
       user = User.create(username: username)
+    else
       session[:user_id] = user.id
-      flash[:success] = "Successfully logged in as a new user #{user.username}"
+      flash[:alert] = "Welcome back #{user.username}!"
+      redirect_to root_path
+      return
     end
 
+    if user.id
+      session[:user_id] = user.id
+      flash[:alert] = "#{user.username} logged in"
+    else
+      flash[:error] = "Unable to log in"
+    end
     redirect_to root_path
   end
 
