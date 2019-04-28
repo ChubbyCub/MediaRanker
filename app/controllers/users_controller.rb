@@ -19,10 +19,13 @@ class UsersController < ApplicationController
     if user.id
       session[:user_id] = user.id
       flash[:alert] = "#{user.username} logged in"
+      redirect_to root_path
     else
-      flash[:error] = "Unable to log in"
+      user.errors.messages.each do |field, messages|
+        flash[field] = messages
+      end
+      redirect_back(fallback_location: root_path)
     end
-    redirect_to root_path
   end
 
   def index

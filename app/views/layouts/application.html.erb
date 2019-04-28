@@ -47,12 +47,7 @@
               </li>
             <% end %>
           <% else %>
-            <% if flash[:error] %>
-              <div class="alert alert-warning" role="alert"><%= message %></div>
-            <% else %>
-              <div class="alert alert-success" role="alert"><%= message %></div>
-            <% end %>
-            
+            <div class="alert alert-success" role="alert"><%= message %></div>
           <% end %>
           </ul>
         <% end %>
