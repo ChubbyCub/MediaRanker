@@ -20,7 +20,7 @@ describe UsersController do
         post login_path, params: test_input
       }.wont_change "User.count"
 
-      expect(flash[:success]).must_equal "Successfully logged in as an existing user #{sample_user.username}"
+      expect(flash[:alert]).must_equal "Welcome back #{sample_user.username}!"
     end
 
     it "should display flash success for new user" do
@@ -33,7 +33,7 @@ describe UsersController do
         post login_path, params: test_input
       }.must_change "User.count", 1
 
-      expect(flash[:success]).must_equal "Successfully logged in as a new user #{test_input[:user][:username]}"
+      expect(flash[:alert]).must_equal "#{test_input[:user][:username]} logged in as a new user"
     end
   end
 

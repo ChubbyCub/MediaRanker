@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
     if user.id
       session[:user_id] = user.id
-      flash[:alert] = "#{user.username} logged in"
+      flash[:alert] = "#{user.username} logged in as a new user"
       redirect_to root_path
     else
       user.errors.messages.each do |field, messages|
